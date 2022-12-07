@@ -13,6 +13,7 @@ type CellProps = {
 
 const Cell = ({ value, position, onClick }: CellProps) => {
   const boardSize = useSelector((state: RootState) => state.gameParameters.boardSize);
+  const isGamePause = useSelector((state: RootState) => state.gameParameters.isPause);
   const [isPassed, setPassed] = useState(false);
   const onClickCell = () => {
     if (onClick && onClick(value)) {
@@ -21,7 +22,7 @@ const Cell = ({ value, position, onClick }: CellProps) => {
   }
 
   return <>
-    <div onClick={onClickCell} className={cx([style.cell, isPassed && style.passedCell])}>{value}</div>
+    <div onClick={onClickCell} className={cx([style.cell, isPassed && style.passedCell])}>{isGamePause ? '?' : value}</div>
     {(position) % boardSize === 0 && <div className={style.break}></div>}
   </>
 };

@@ -5,14 +5,16 @@ export type GameParametersState = {
     boardSize: number,
     currentBoard: string[] | number[],
     mode: GameModeEnum,
-    currentIndex: number
+    currentIndex: number,
+    isPause: boolean
 }
 
 const initialState: GameParametersState = {
     boardSize: 3,
     currentBoard: [],
     mode: GameModeEnum.EASY,
-    currentIndex: 0
+    currentIndex: 0,
+    isPause: false
 }
 
 export const gameParametersSlice = createSlice({
@@ -27,9 +29,12 @@ export const gameParametersSlice = createSlice({
         nextIndex: (state) => {
             state.currentIndex++;
         },
+        setGamePause: (state, action: PayloadAction<boolean>) => {
+            state.isPause = action.payload;
+        },
     },
 })
 
-export const { initState, nextIndex } = gameParametersSlice.actions
+export const { initState, nextIndex, setGamePause } = gameParametersSlice.actions
 
 export default gameParametersSlice.reducer
