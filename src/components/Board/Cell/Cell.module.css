@@ -1,0 +1,17 @@
+.cell {
+  text-align: center;
+  padding: 1rem;
+  font-size: 4rem;
+  border: 1px solid #4fc3f7;
+  width: 4rem;
+  margin: 0.1rem;
+  user-select: none;
+}
+
+.passedCell {
+  background-color: #4fc3f7;
+}
+
+.break {
+  width: 100%;
+}
