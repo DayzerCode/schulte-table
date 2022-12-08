@@ -1,11 +1,14 @@
-import Board from './components/Board/Board';
-import Timer from './components/Timer/Timer';
+import { Route, Routes } from 'react-router-dom';
+import Game from './pages/Game/Game';
+import Main from './pages/Main/Main';
 
 const App = () => {
   return (
     <div className="App">
-      <Timer />
-      <Board />
+      <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='/game' element={<Game />} />
+      </Routes>
     </div>
   );
 }

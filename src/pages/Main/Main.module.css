@@ -1,0 +1,16 @@
+.wrap {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+  flex-flow: column;
+  min-width: 16rem;
+  text-align: center;
+}
+
+.links a {
+  margin-bottom: 1.5rem;
+}

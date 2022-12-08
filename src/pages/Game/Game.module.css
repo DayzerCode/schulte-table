@@ -1,0 +1,13 @@
+.wrap {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.topPanel {
+  display: flex;
+  min-width: 19rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
