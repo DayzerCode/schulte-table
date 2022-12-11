@@ -1,14 +1,15 @@
-import { TypeTableEnum } from "../entities/enum/typeTableEnum";
-import { BoardSettings } from "../entities/types/boardSettings";
+import { SymbolTypeEnum } from "../entities/enum/symbolTypeEnum";
+import { BoardParameters } from "../entities/types/boardParameters";
 
-export const createBoard = ({ boardSize, type, isInverted }: BoardSettings) => {
-    const count = Math.pow(boardSize, 2);
+
+export const createBoard = ({ size, symbolType, isInverted }: BoardParameters) => {
+    const count = Math.pow(size, 2);
     let result: string[] | number[];
-    switch (type) {
-        case TypeTableEnum.NUMBERS:
+    switch (symbolType) {
+        case SymbolTypeEnum.NUMBERS:
             result = createBoardNumbers(count);
             break;
-        case TypeTableEnum.ENGLISH_LETTERS:
+        case SymbolTypeEnum.ENGLISH_LETTERS:
             result = createBoardLetters(count, 'abcdefghijklmnopqrstuvwxyz');
             break;
         default:

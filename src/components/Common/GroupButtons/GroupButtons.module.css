@@ -1,0 +1,13 @@
+.block {
+  margin-bottom: 2rem;
+}
+
+.btn {
+  border: 1px solid #4fc3f7;
+  padding: 0.5rem 1rem;
+}
+
+.btn.active {
+  background-color: #4fc3f7;
+  color: #fff;
+}

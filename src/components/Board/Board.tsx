@@ -1,31 +1,24 @@
 import { arrayShuffle } from "../../utils/arrayShuffle";
-import { createBoard } from "../../utils/createBoard";
 import Cell from "./Cell/Cell";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { initState, nextIndex } from "../../reduxSlices/gameParametersSlice";
 import { RootState } from "../../reduxSlices/store";
-import { TypeTableEnum } from "../../entities/enum/typeTableEnum";
-import { GameModeEnum } from "../../entities/enum/gameModeEnum";
+import { nextIndex } from "../../reduxSlices/gameSlice";
 
 import style from './Board.module.css'
 
-const boardSize = 3;
-const board = createBoard({ boardSize: boardSize, type: TypeTableEnum.NUMBERS, isInverted: false });
 const Board = () => {
-  const currentIndex = useSelector((state: RootState) => state.gameParameters.currentIndex);
-  const currentBoard = useSelector((state: RootState) => state.gameParameters.currentBoard);
-  const [shuffledBoard] = useState<string[] | number[]>(arrayShuffle(board));
+  const { currentBoard, process: { currentIndex } } = useSelector((state: RootState) => state.game);
+  const [shuffledBoard, setShuffledBoard] = useState<string[] | number[] | null>(null);
   const indexRef = useRef<number>(0);
   indexRef.current = currentIndex;
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(initState({
-      currentBoard: board,
-      mode: GameModeEnum.NORMAL,
-      boardSize: boardSize
-    }));
-  }, []);
+    if (currentBoard.length > 0) {
+      setShuffledBoard(arrayShuffle(currentBoard));
+    }
+  }, [currentBoard]);
 
   const onClick = useCallback((value: string | number) => {
     if (currentBoard[indexRef.current] === value) {

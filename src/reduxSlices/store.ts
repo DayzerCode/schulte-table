@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import gameParametersReducer from './gameParametersSlice'
+import gameReducer from './gameSlice'
 
 export const store = configureStore({
     reducer: {
-        gameParameters: gameParametersReducer
+        game: gameReducer
     },
 })
 

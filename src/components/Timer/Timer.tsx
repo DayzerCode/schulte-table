@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
-import { setGamePause } from "../../reduxSlices/gameParametersSlice";
+import { setGamePause } from "../../reduxSlices/gameSlice";
 
 import style from './Timer.module.css'
 

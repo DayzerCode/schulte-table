@@ -4,7 +4,7 @@ import { RootState } from "../../reduxSlices/store";
 import style from './Timer.module.css'
 
 const NextTarget = () => {
-  const { currentBoard, currentIndex } = useSelector((state: RootState) => state.gameParameters);
+  const { currentBoard, process: { currentIndex } } = useSelector((state: RootState) => state.game);
 
   const getNextTarget = () => {
     return currentBoard[currentIndex];
