@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Board from "../../components/Board/Board";
 import NextTarget from "../../components/NextTarget/NextTarget";
 import Timer from "../../components/Timer/Timer";
@@ -33,6 +34,7 @@ const Game = () => {
         <Board />
         <div className={style.buttonBlock}>
           <button className="btn-primary" onClick={run}>Restart</button>
+          <Link className="btn-primary" to={"/preparation-for-game"}>Back to preparation</Link>
         </div>
       </>}
     </div>

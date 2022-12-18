@@ -11,3 +11,12 @@
   align-items: center;
   margin-bottom: 2rem;
 }
+
+.buttonBlock {
+  margin-top: 2rem;
+}
+
+.buttonBlock>button,
+.buttonBlock>a {
+  margin: 0 .5rem;
+}
