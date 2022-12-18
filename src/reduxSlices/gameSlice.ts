@@ -7,14 +7,16 @@ export type GameState = {
     parameters: BoardParameters,
     process: {
         currentIndex: number,
-        isPause: boolean
+        isPause: boolean,
+        isWin: boolean
     }
     currentBoard: string[] | number[],
 }
 
 const defaultProcess = {
     currentIndex: 0,
-    isPause: false
+    isPause: false,
+    isWin: false
 }
 
 const initialState: GameState = {
@@ -34,15 +36,18 @@ export const gameParametersSlice = createSlice({
     reducers: {
         initParameters: (state, action: PayloadAction<BoardParameters>) => {
             state.parameters = action.payload;
-            // Reset game process
             state.currentBoard = [];
-            state.process = defaultProcess;
         },
         initCurrentBoard: (state, action: PayloadAction<string[] | number[]>) => {
             state.currentBoard = action.payload;
+            // Reset game process
+            state.process = defaultProcess;
         },
         nextIndex: (state) => {
             state.process.currentIndex++;
+            if (state.process.currentIndex === state.currentBoard.length) {
+                state.process.isWin = true;
+            }
         },
         setGamePause: (state, action: PayloadAction<boolean>) => {
             state.process.isPause = action.payload;

@@ -1,22 +1,22 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import cx from 'classnames';
-import style from './Cell.module.css'
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../reduxSlices/store';
 import { GameModeEnum } from '../../../entities/enum/gameModeEnum';
+
+import style from './Cell.module.css';
 
 type CellProps = {
   value: string | number,
   position: number,
-  onClick?: (value: string | number) => boolean
+  onClick?: (value: string | number) => boolean,
+  mode: GameModeEnum,
+  size: number,
+  isPassed: boolean,
 }
 
-const Cell = ({ value, position, onClick }: CellProps) => {
-  const { parameters: { size, mode }, process: { isPause: isGamePause } } = useSelector((state: RootState) => state.game);
-  const [isPassed, setPassed] = useState(false);
+const Cell = ({ value, position, onClick, mode, size, isPassed = false }: CellProps) => {
   const onClickCell = () => {
-    if (onClick && onClick(value)) {
-      setPassed(true);
+    if (onClick) {
+      onClick(value)
     }
   }
 
@@ -25,7 +25,7 @@ const Cell = ({ value, position, onClick }: CellProps) => {
   }
 
   return <>
-    <div onClick={onClickCell} className={cx([style.cell, isPassedCell() && style.passedCell])}>{isGamePause ? '?' : value}</div>
+    <div onClick={onClickCell} className={cx([style.cell, isPassedCell() && style.passedCell])}>{value}</div>
     {(position) % size === 0 && <div className={style.break}></div>}
   </>
 };

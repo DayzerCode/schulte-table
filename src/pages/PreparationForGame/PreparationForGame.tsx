@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GroupButtons from "../../components/Common/GroupButtons/GroupButtons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -6,11 +6,12 @@ import { initParameters } from "../../reduxSlices/gameSlice";
 import { GameModeEnum } from "../../entities/enum/gameModeEnum";
 import { SymbolTypeEnum } from "../../entities/enum/symbolTypeEnum";
 import { symbolTypeVariants } from "./variants/symbolTypeVariants";
-import { boardSizeVariants } from "./variants/boardSizeVariants";
 import { modeVariants } from "./variants/modeVariants";
 import { Parameter } from "../../entities/types/parameterType";
 import { BoardParameters } from "../../entities/types/boardParameters";
 import { orderVariants } from "./variants/orderVariants";
+import { boardSizeVariantsForLetters, boardSizeVariantsForNumbers } from "./variants/boardSizeVariants";
+import { GameParameter } from "../../entities/types/gameParameter";
 
 import style from "./PreparationForGame.module.css";
 
@@ -23,6 +24,15 @@ const PreparationForGame = () => {
     mode: GameModeEnum.EASY,
     isInverted: false
   });
+
+  const [boardSizeVariants, setBoardSizeVariants] = useState<GameParameter[]>(boardSizeVariantsForNumbers);
+
+  useEffect(() => {
+    if (parameters?.symbolType === SymbolTypeEnum.ENGLISH_LETTERS) {
+      updateParameter('size', 3);
+    }
+    setBoardSizeVariants(parameters?.symbolType === SymbolTypeEnum.ENGLISH_LETTERS ? boardSizeVariantsForLetters : boardSizeVariantsForNumbers);
+  }, [parameters?.symbolType]);
 
   const updateParameter = (nameGroup: string, value: Parameter) => {
     setParameters((prev: any) => {

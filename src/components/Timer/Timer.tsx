@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setGamePause } from "../../reduxSlices/gameSlice";
+import { RootState } from "../../reduxSlices/store";
 
 import style from './Timer.module.css'
 
@@ -9,12 +10,13 @@ const Timer = () => {
   const dispatch = useDispatch();
   const [passedSeconds, setPassedSeconds] = useState<number>(0);
   const [isPause, setPause] = useState<boolean>(false);
+  const { currentBoard, process: { isWin } } = useSelector((state: RootState) => state.game);
 
   useEffect(() => {
     dispatch(setGamePause(isPause));
 
     let timerId: number | null = null;
-    if (!isPause) {
+    if (!isPause && !isWin) {
       timerId = window.setInterval(() => {
         setPassedSeconds(prev => prev + 1);
       }, SECOND);
@@ -24,7 +26,11 @@ const Timer = () => {
         clearInterval(timerId);
       }
     }
-  }, [isPause]);
+  }, [isPause, isWin]);
+
+  useEffect(() => {
+    setPassedSeconds(0);
+  }, [currentBoard]);
 
   const buttonLabel = () => {
     return !isPause ? 'Pause' : 'Continue';
@@ -38,9 +44,10 @@ const Timer = () => {
     <div className={style.wrap}>
       <div>
         <div>Past time: {passedSeconds} </div>
-        <div>
-          <button className="btn-primary" onClick={switchPause}>{buttonLabel()}</button>
-        </div>
+        {!isWin &&
+          <div>
+            <button className="btn-primary" onClick={switchPause}>{buttonLabel()}</button>
+          </div>}
       </div>
     </div>
   );

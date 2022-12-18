@@ -14,9 +14,15 @@ const Game = () => {
   const { parameters: { symbolType, size, isInverted }, currentBoard } = useSelector((state: RootState) => state.game);
   const dispatch = useDispatch();
   useEffect(() => {
+    run();
+  }, []);
+
+
+  const run = () => {
     const board = createBoard({ size, symbolType, isInverted: isInverted, mode: GameModeEnum.EASY });
     dispatch(initCurrentBoard(board));
-  }, []);
+  }
+
   return (
     <div className={style.wrap}>
       {currentBoard.length > 0 && <>
@@ -25,6 +31,9 @@ const Game = () => {
           <Timer />
         </div>
         <Board />
+        <div className={style.buttonBlock}>
+          <button className="btn-primary" onClick={run}>Restart</button>
+        </div>
       </>}
     </div>
   );

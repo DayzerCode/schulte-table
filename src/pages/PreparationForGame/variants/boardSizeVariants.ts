@@ -1,6 +1,6 @@
 import { GameParameter } from "../../../entities/types/gameParameter";
 
-export const boardSizeVariants: GameParameter[] = [
+export const boardSizeVariantsForLetters: GameParameter[] = [
     {
         name: '3x3',
         value: 3,
@@ -14,3 +14,15 @@ export const boardSizeVariants: GameParameter[] = [
         value: 5,
     }
 ];
+
+export const boardSizeVariantsForNumbers: GameParameter[] = [
+    ...boardSizeVariantsForLetters,
+    {
+        name: '6x6',
+        value: 6,
+    },
+    {
+        name: '7x7',
+        value: 7,
+    },
+]

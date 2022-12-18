@@ -4,7 +4,7 @@ import { RootState } from "../../reduxSlices/store";
 import style from './Timer.module.css'
 
 const NextTarget = () => {
-  const { currentBoard, process: { currentIndex } } = useSelector((state: RootState) => state.game);
+  const { currentBoard, process: { currentIndex, isWin } } = useSelector((state: RootState) => state.game);
 
   const getNextTarget = () => {
     return currentBoard[currentIndex];
@@ -12,7 +12,7 @@ const NextTarget = () => {
 
   return (
     <div className={style.wrap}>
-      Next target: {getNextTarget()}
+      {isWin ? <>Congratulations. You win!</> : <>Next target: {getNextTarget()}</>}
     </div>
   );
 };

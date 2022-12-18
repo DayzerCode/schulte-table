@@ -8,7 +8,7 @@ import { nextIndex } from "../../reduxSlices/gameSlice";
 import style from './Board.module.css'
 
 const Board = () => {
-  const { currentBoard, process: { currentIndex } } = useSelector((state: RootState) => state.game);
+  const { currentBoard, process: { currentIndex, isPause }, parameters: { mode, size } } = useSelector((state: RootState) => state.game);
   const [shuffledBoard, setShuffledBoard] = useState<string[] | number[] | null>(null);
   const indexRef = useRef<number>(0);
   indexRef.current = currentIndex;
@@ -21,19 +21,28 @@ const Board = () => {
   }, [currentBoard]);
 
   const onClick = useCallback((value: string | number) => {
-    if (currentBoard[indexRef.current] === value) {
+    if (!isPause && currentBoard[indexRef.current] === value) {
       dispatch(nextIndex());
       return true;
     }
     return false;
-  }, [currentBoard]);
+  }, []);
 
   return <div className={style.board}>
     {shuffledBoard && shuffledBoard.map((value, index) => {
       const position = index + 1;
-      return <Cell key={value} value={value} position={position} onClick={onClick} />
+      return <Cell
+        key={value}
+        value={value}
+        position={position}
+        onClick={onClick}
+        mode={mode}
+        size={size}
+        isPassed={currentIndex >= value}
+      />
     })}
   </div>;
 };
+
 export default Board;
 
