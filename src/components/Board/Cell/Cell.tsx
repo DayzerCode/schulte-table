@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import cx from 'classnames';
 import { GameModeEnum } from '../../../entities/enum/gameModeEnum';
 
@@ -10,13 +10,18 @@ type CellProps = {
   onClick?: (value: string | number) => boolean,
   mode: GameModeEnum,
   size: number,
-  isPassed: boolean,
 }
 
-const Cell = ({ value, position, onClick, mode, size, isPassed = false }: CellProps) => {
+const Cell = ({ value, position, onClick, mode, size }: CellProps) => {
+  const [isPassed, setPassed] = useState<boolean>(false);
+
+  useEffect(() => {
+    setPassed(false);
+  }, []);
+
   const onClickCell = () => {
-    if (onClick) {
-      onClick(value)
+    if (onClick && onClick(value)) {
+      setPassed(true);
     }
   }
 
