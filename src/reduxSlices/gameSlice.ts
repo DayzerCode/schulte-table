@@ -8,7 +8,8 @@ export type GameState = {
     process: {
         currentIndex: number,
         isPause: boolean,
-        isWin: boolean
+        isWin: boolean,
+        numberGame: number
     }
     currentBoard: string[] | number[],
 }
@@ -16,7 +17,8 @@ export type GameState = {
 const defaultProcess = {
     currentIndex: 0,
     isPause: false,
-    isWin: false
+    isWin: false,
+    numberGame: 0
 }
 
 const initialState: GameState = {
@@ -41,7 +43,9 @@ export const gameParametersSlice = createSlice({
         initCurrentBoard: (state, action: PayloadAction<string[] | number[]>) => {
             state.currentBoard = action.payload;
             // Reset game process
-            state.process = defaultProcess;
+            state.process = {
+                ...defaultProcess, ...{ numberGame: state.process.numberGame + 1 }
+            };
         },
         nextIndex: (state) => {
             state.process.currentIndex++;

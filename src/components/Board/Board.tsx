@@ -8,7 +8,7 @@ import { nextIndex } from "../../reduxSlices/gameSlice";
 import style from './Board.module.css'
 
 const Board = () => {
-  const { currentBoard, process: { currentIndex, isPause }, parameters: { mode, size, isInverted } } = useSelector((state: RootState) => state.game);
+  const { currentBoard, process: { currentIndex, isPause, numberGame }, parameters: { mode, size } } = useSelector((state: RootState) => state.game);
   const [shuffledBoard, setShuffledBoard] = useState<string[] | number[] | null>(null);
   const indexRef = useRef<number>(0);
   indexRef.current = currentIndex;
@@ -32,7 +32,7 @@ const Board = () => {
     {shuffledBoard && shuffledBoard.map((value, index) => {
       const position = index + 1;
       return <Cell
-        key={value}
+        key={numberGame.toString() + value.toString()}
         value={!isPause ? value : '?'}
         position={position}
         onClick={onClick}
