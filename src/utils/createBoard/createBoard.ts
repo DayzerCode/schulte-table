@@ -1,8 +1,7 @@
-import { SymbolTypeEnum } from "../entities/enum/symbolTypeEnum";
-import { BoardParameters } from "../entities/types/boardParameters";
+import { SymbolTypeEnum } from "../../entities/enum/symbolTypeEnum";
+import { BoardParameters } from "../../entities/types/boardParameters";
 
-
-export const createBoard = ({ size, symbolType, isInverted }: BoardParameters) => {
+export const createBoard = ({ size, symbolType, isInverted }: Omit<BoardParameters, 'mode'>) => {
     const count = Math.pow(size, 2);
     let result: string[] | number[];
     switch (symbolType) {

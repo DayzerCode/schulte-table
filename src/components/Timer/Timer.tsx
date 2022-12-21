@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { setGamePause } from "../../reduxSlices/gameSlice";
 import { RootState } from "../../reduxSlices/store";
+import { formatSeconds } from "../../utils/formatSeconds/formatSeconds";
 
 import style from './Timer.module.css'
 
@@ -43,7 +44,7 @@ const Timer = () => {
   return (
     <div className={style.wrap}>
       <div>
-        <div>Past time: {passedSeconds} </div>
+        <div>Past time: {formatSeconds(passedSeconds)}</div>
         {!isWin &&
           <div>
             <button className="btn-primary" onClick={switchPause}>{buttonLabel()}</button>

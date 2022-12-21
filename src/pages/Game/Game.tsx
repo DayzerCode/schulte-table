@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 import Board from "../../components/Board/Board";
 import NextTarget from "../../components/NextTarget/NextTarget";
 import Timer from "../../components/Timer/Timer";
-import { GameModeEnum } from "../../entities/enum/gameModeEnum";
 import { initCurrentBoard } from "../../reduxSlices/gameSlice";
 import { RootState } from "../../reduxSlices/store";
-import { createBoard } from "../../utils/createBoard";
+import { createBoard } from "../../utils/createBoard/createBoard";
 
 import style from "./Game.module.css";
 
@@ -20,7 +19,7 @@ const Game = () => {
 
 
   const run = () => {
-    const board = createBoard({ size, symbolType, isInverted: isInverted, mode: GameModeEnum.EASY });
+    const board = createBoard({ size, symbolType, isInverted: isInverted });
     dispatch(initCurrentBoard(board));
   }
 
