@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import GroupButtons from "../../components/Common/GroupButtons/GroupButtons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { initParameters } from "../../reduxSlices/gameSlice";
 import { GameModeEnum } from "../../entities/enum/gameModeEnum";
 import { SymbolTypeEnum } from "../../entities/enum/symbolTypeEnum";
 import { symbolTypeVariants } from "./variants/symbolTypeVariants";
@@ -12,6 +11,7 @@ import { BoardParameters } from "../../entities/types/boardParameters";
 import { orderVariants } from "./variants/orderVariants";
 import { boardSizeVariantsForLetters, boardSizeVariantsForNumbers } from "./variants/boardSizeVariants";
 import { GameParameter } from "../../entities/types/gameParameter";
+import { initParameters } from "../../reduxSlices/gameSlice/gameSlice";
 
 import style from "./PreparationForGame.module.css";
 
