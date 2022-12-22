@@ -10,14 +10,11 @@ type CellProps = {
   onClick?: (value: string | number) => boolean,
   mode: GameModeEnum,
   size: number,
+  isWin?: boolean
 }
 
-const Cell = ({ value, position, onClick, mode, size }: CellProps) => {
+const Cell = ({ value, position, onClick, mode, size, isWin }: CellProps) => {
   const [isPassed, setPassed] = useState<boolean>(false);
-
-  useEffect(() => {
-    setPassed(false);
-  }, []);
 
   const onClickCell = () => {
     if (onClick && onClick(value)) {
@@ -25,12 +22,18 @@ const Cell = ({ value, position, onClick, mode, size }: CellProps) => {
     }
   }
 
-  const isPassedCell = (): boolean => {
-    return isPassed && mode === GameModeEnum.EASY;
+  const getClasses = (): string[] => {
+    const styles = [style.cell];
+    if (isWin) {
+      styles.push(style.completedCell);
+    } else if (isPassed && mode === GameModeEnum.EASY) {
+      styles.push(style.passedCell);
+    }
+    return styles;
   }
 
   return <>
-    <div onClick={onClickCell} className={cx([style.cell, isPassedCell() && style.passedCell])}>{value}</div>
+    <div data-testid="cell-btn" onClick={onClickCell} className={cx(getClasses())}>{value}</div>
     {(position) % size === 0 && <div className={style.break}></div>}
   </>
 };

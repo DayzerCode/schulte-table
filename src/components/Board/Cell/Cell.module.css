@@ -12,6 +12,10 @@
   background-color: #4fc3f7;
 }
 
+.completedCell {
+  background-color: #73e975;
+}
+
 .break {
   width: 100%;
 }
