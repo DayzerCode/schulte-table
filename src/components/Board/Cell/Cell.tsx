@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import cx from 'classnames';
 import { GameModeEnum } from '../../../entities/enum/gameModeEnum';
 

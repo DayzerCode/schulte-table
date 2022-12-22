@@ -3,7 +3,7 @@ import Cell from "./Cell/Cell";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../reduxSlices/store";
-import { nextIndex } from "../../reduxSlices/gameSlice";
+import { nextIndex } from "../../reduxSlices/gameSlice/gameSlice";
 
 import style from './Board.module.css'
 

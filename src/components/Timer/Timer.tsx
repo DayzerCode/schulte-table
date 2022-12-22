@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { setGamePause } from "../../reduxSlices/gameSlice";
+import { setGamePause } from "../../reduxSlices/gameSlice/gameSlice";
 import { RootState } from "../../reduxSlices/store";
 import { formatSeconds } from "../../utils/formatSeconds/formatSeconds";
 

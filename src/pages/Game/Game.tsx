@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Board from "../../components/Board/Board";
 import NextTarget from "../../components/NextTarget/NextTarget";
 import Timer from "../../components/Timer/Timer";
-import { initCurrentBoard } from "../../reduxSlices/gameSlice";
+import { initCurrentBoard } from "../../reduxSlices/gameSlice/gameSlice";
 import { RootState } from "../../reduxSlices/store";
 import { createBoard } from "../../utils/createBoard/createBoard";
 

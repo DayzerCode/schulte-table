@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { GameModeEnum } from '../entities/enum/gameModeEnum'
-import { SymbolTypeEnum } from '../entities/enum/symbolTypeEnum'
-import { BoardParameters } from '../entities/types/boardParameters'
+import { GameModeEnum } from '../../entities/enum/gameModeEnum'
+import { SymbolTypeEnum } from '../../entities/enum/symbolTypeEnum'
+import { BoardParameters } from '../../entities/types/boardParameters'
 
 export type GameState = {
     parameters: BoardParameters,
@@ -21,7 +21,7 @@ const defaultProcess = {
     numberGame: 0
 }
 
-const initialState: GameState = {
+export const gameInitialState: GameState = {
     parameters: {
         size: 3,
         isInverted: false,
@@ -34,7 +34,7 @@ const initialState: GameState = {
 
 export const gameParametersSlice = createSlice({
     name: 'game',
-    initialState,
+    initialState: gameInitialState,
     reducers: {
         initParameters: (state, action: PayloadAction<BoardParameters>) => {
             state.parameters = action.payload;
