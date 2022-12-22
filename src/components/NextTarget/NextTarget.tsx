@@ -12,7 +12,9 @@ const NextTarget = () => {
 
   return (
     <div className={style.wrap}>
-      {isWin ? <>Congratulations. You win!</> : <>Next target: {getNextTarget()}</>}
+      {isWin ?
+        <span data-testid="win-label">Congratulations. You win!</span> :
+        <>Next target: <span data-testid="next-target">{getNextTarget()}</span></>}
     </div>
   );
 };

@@ -1,11 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import gameReducer from './gameSlice/gameSlice'
 
-export const store = configureStore({
-    reducer: {
-        game: gameReducer
-    },
-})
+export const createReduxStore = (initialState = {}) => {
+    return configureStore({
+        reducer: combineReducers({
+            game: gameReducer
+        }),
+        preloadedState: initialState
+    });
+}
+
+export const store = createReduxStore();
 
 export type RootState = ReturnType<typeof store.getState>
 

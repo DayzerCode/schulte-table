@@ -34,7 +34,7 @@ const Cell = ({ value, position, onClick, mode, size, isWin }: CellProps) => {
 
   return <>
     <div data-testid="cell-btn" onClick={onClickCell} className={cx(getClasses())}>{value}</div>
-    {(position) % size === 0 && <div className={style.break}></div>}
+    {(position) % size === 0 && <div data-testid="break" className={style.break}></div>}
   </>
 };
 
