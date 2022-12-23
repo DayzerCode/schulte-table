@@ -6,7 +6,7 @@ import { formatSeconds } from "../../utils/formatSeconds/formatSeconds";
 
 import style from './Timer.module.css'
 
-const SECOND = 1000;
+export const TIMER_INTERVAL = 1000;
 const Timer = () => {
   const dispatch = useDispatch();
   const [passedSeconds, setPassedSeconds] = useState<number>(0);
@@ -20,7 +20,7 @@ const Timer = () => {
     if (!isPause && !isWin) {
       timerId = window.setInterval(() => {
         setPassedSeconds(prev => prev + 1);
-      }, SECOND);
+      }, TIMER_INTERVAL);
     }
     return () => {
       if (timerId) {
@@ -44,10 +44,10 @@ const Timer = () => {
   return (
     <div className={style.wrap}>
       <div>
-        <div>Past time: {formatSeconds(passedSeconds)}</div>
+        <div>Past time: <span data-testid="passed-time">{formatSeconds(passedSeconds)}</span></div>
         {!isWin &&
           <div>
-            <button className="btn-primary" onClick={switchPause}>{buttonLabel()}</button>
+            <button className="btn-primary" onClick={switchPause} data-testid="switch-pause">{buttonLabel()}</button>
           </div>}
       </div>
     </div>
