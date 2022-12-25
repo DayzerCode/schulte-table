@@ -31,7 +31,9 @@ const PreparationForGame = () => {
     if (parameters?.symbolType === SymbolTypeEnum.ENGLISH_LETTERS) {
       updateParameter('size', 3);
     }
-    setBoardSizeVariants(parameters?.symbolType === SymbolTypeEnum.ENGLISH_LETTERS ? boardSizeVariantsForLetters : boardSizeVariantsForNumbers);
+
+    const currentType = parameters?.symbolType === SymbolTypeEnum.ENGLISH_LETTERS ? boardSizeVariantsForLetters : boardSizeVariantsForNumbers;
+    setBoardSizeVariants(currentType);
   }, [parameters?.symbolType]);
 
   const updateParameter = (nameGroup: string, value: Parameter) => {
@@ -48,7 +50,7 @@ const PreparationForGame = () => {
   }
 
   return (
-    <div className={style.wrap}>
+    <div className={style.wrap} data-testid="preparation-for-game-page">
       <h1>Preparation For Game</h1>
       <GroupButtons
         nameGroup="Symbols on board"
@@ -79,7 +81,7 @@ const PreparationForGame = () => {
         variants={orderVariants}
       />
       <button className="btn-primary" onClick={start}>Start</button>
-    </div >
+    </div>
   );
 }
 
