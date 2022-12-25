@@ -26,7 +26,7 @@ describe('GroupButtons component', () => {
     />);
 
     expect(component.getByText(nameGroup)).toBeInTheDocument();
-    expect(component.getAllByTestId('btn').length).toBe(2);
+    expect(component.getAllByTestId('btn', { exact: false }).length).toBe(2);
     testVariants.forEach(({ name }) => {
       const button = expect(component.getByText(name));
       button.toBeInTheDocument();

@@ -22,7 +22,7 @@ const GroupButtons = ({ keyGroup, currentValue, nameGroup, updateParameter, vari
             key={name}
             onClick={() => updateParameter(keyGroup, value)}
             className={cx([style.btn, currentValue === value && style.active])}
-            data-testid="btn"
+            data-testid={`btn keyGroup_${keyGroup}`}
           >
             {name}
           </button>)}
