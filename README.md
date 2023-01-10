@@ -8,8 +8,8 @@ This is game to improve your peripheral vision and speed reading
 
 ## Tech stack
 
-React
-Typescript
-Redux Toolkit
-React router
-Jest / React Testing Library
+React  
+Typescript  
+Redux Toolkit  
+React router  
+Jest / React Testing Library  
