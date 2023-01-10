@@ -4,7 +4,7 @@ This is game to improve your peripheral vision and speed reading
 
 ## Demonstration
 
-[https://schulte-table-pi.vercel.app/](https://schulte-table-pi.vercel.app/)
+[https://schulte-table-pi.vercel.app/](https://schulte-table-pi.vercel.app/){target="_blank"}
 
 ## Tech stack
 
